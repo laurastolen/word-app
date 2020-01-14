@@ -31,7 +31,7 @@ function showMyWords(req, res) {
 }
 
 function showSearchPage(req, res) {
-  res.send('here is the search form page');
+  res.render('search')
 }
 
 function findWord(req, res) {
