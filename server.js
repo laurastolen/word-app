@@ -40,17 +40,17 @@ function showSearchPage(req, res) {
 }
 
 function findWord(req, res) {
-  let word = req.body.word;
+  let wordObj = req.body.word;
 
-  owlquery.define(word)
+  owlquery.define(wordObj)
     .then(result => {
-      console.log(result);
-
+      let word = new Word(result);
+      console.log(word);
+      res.render('results', { word: word });
     })
     .catch(error => console.log(error)
     );
 
-  res.render('results', { word: word });
 
 }
 
@@ -60,3 +60,17 @@ function saveWord(req, res) {
 
   res.redirect('/');
 }
+
+function Word(wordObj) {
+  this.word = wordObj.word;
+  this.pron = wordObj.pronunciation;
+  this.def = wordObj.definitions[0].definition;
+  if (wordObj.definitions[0].emoji !== null) {
+    this.emoji = wordObj.definitions[0].emoji;
+  }
+  if (wordObj.definitions[0].image !== null) {
+    this.image = wordObj.definitions[0].image_url;
+  }
+}
+
+
