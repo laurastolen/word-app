@@ -6,17 +6,21 @@
     <![endif]-->
 
   <div class="container">
-    <a href="/">Take Me Home Please</a>
+
+    <form action="/search">
+      <button type="submit">Let Me Search Again Please</button>
+    </form>
+    <form action="/">
+      <button type="submit">Take Me Home Please</button>
+    </form>
+
     <h1>Results from the Owl</h1>
-    <p>here are the results for <%= word %>:</p>
+    <p>here are the results for <%= word.word %>:</p>
 
     <h2><%= word.word %></h2>
-    <li><%= word.pron %></li>
-    <li><%= word.def %></li>
+    <p><%= word.pron %></p>
+    <p><%= word.def %></p>
     <img src="<%= word.image %>" alt="image of <%= word.word %>">
-    <li><%= word.emoji %></li>
+    <p><%= word.emoji %></p>
   </div>
-  <script src="" async defer></script>
-</body>
-
-</html>
+  <%- include('./partials/footer') %>

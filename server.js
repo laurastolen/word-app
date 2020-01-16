@@ -44,12 +44,14 @@ function findWord(req, res) {
 
   owlquery.define(wordObj)
     .then(result => {
+      console.log(result);
       let word = new Word(result);
-      console.log(word);
       res.render('results', { word: word });
     })
-    .catch(error => console.log(error)
-    );
+    .catch(error => {
+      console.log(error);
+      res.render('wordNotFound', { wordObj: wordObj });
+    });
 
 
 }
